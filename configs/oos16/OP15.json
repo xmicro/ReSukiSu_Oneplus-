@@ -15,12 +15,12 @@
   "disk_cleanup": true,
   "hmbird": false,
   "susfs": true,
-  "ds": false,
+  "ds": true,
   "bbg": false,
-  "bbr": true,
+  "bbr": false,
   "ttl": true,
   "ip_set": true,
   "unicode": true,
-  "ntsync": false,
+  "ntsync": true,
   "uname": "5-gb2a876903b49-ab14541642-4k"
 }
