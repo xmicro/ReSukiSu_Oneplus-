@@ -34,19 +34,19 @@ on:
           - android14-6.1
           - android13-5.15
           - android12-5.10
-        default: OOS14+15+16
+        default: OOS16
 
       op_target_model:
         description: 'Optional: build only one model, e.g. OP12, OP13-CPH, OP-NORD-4, OP12-6.1.118. Leave empty to build all selected.'
         required: false
         type: string
-        default: ''
+        default: 'OP15'
 
       ksu_options:
         description: 'Enter ReSukiSU build json'
         required: true
         type: string
-        default: '[{"type":"rsksu","hash":"main"}]'
+        default: '[{"type":"rsksu","hash":"dev"}]'
 
       optimize_level:
         description: 'Compiler optimization level'
@@ -61,7 +61,7 @@ on:
         description: 'Clean build (no ccache)'
         required: false
         type: boolean
-        default: false
+        default: true
 
       debug:
         description: 'Enable debug mode: dumping debug related artifacts and show some debug logs'
@@ -73,7 +73,7 @@ on:
         description: 'Do you want to sync toolchains before build? [runs required for the 1st run]'
         required: false
         type: boolean
-        default: false
+        default: true
 
       build_timestamp:
         description: 'Custom kernel build timestamp ie (Tue Feb 10 10:01:02 UTC 2026). Leave empty for current UTC time.'
@@ -85,7 +85,7 @@ on:
         description: 'Enable ADIOS I/O scheduler support'
         required: false
         type: boolean
-        default: false
+        default: true
 
       android12-5_10_susfs_branch_or_commit:
         description: 'Enter SusFS Branch or commit hash for android12-5.10'
@@ -115,7 +115,7 @@ on:
         description: 'Enter SusFS Branch or commit hash for android16-6.12'
         required: false
         type: string
-        default: ''
+        default: 'gki-android16-6.12-dev'
 
 jobs:
   set-op-model:
