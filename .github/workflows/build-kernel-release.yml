@@ -637,9 +637,10 @@ jobs:
           ' matrix.json > matrix.tmp && mv matrix.tmp matrix.json
           echo ::endgroup::
 
-          wrapped="$(jq -n --argjson items "$merged_matrix" '{ include: $items }')"
-          echo "matrix=$(jq -c . <<< "$wrapped")" >> "$GITHUB_OUTPUT"
-
+          #wrapped="$(jq -n --argjson items "$merged_matrix" '{ include: $items }')"
+          #echo "matrix=$(jq -c . <<< "$wrapped")" >> "$GITHUB_OUTPUT"
+          echo "matrix=$(jq -c '{ include: . }' matrix.json)" >> "$GITHUB_OUTPUT"
+          
           echo "::endgroup::"
 
       - name: Upload build matrix
