@@ -107,6 +107,52 @@ on:
         type: boolean
         default: false
 
+      enable_hmbird:
+        description: 'Enable HMBIRD. CPU scheduler modification for processing heavy use tasks (e.g., gaming), but can cause instability. WARNING: ONLY FOR SM8750/MT6991 DEVICES! (OP13, OP13T, OP13S, OP-TURBO-6, OP-PAD-3-SM8750, OP-PAD-2-PRO, OP-PAD-2-MT6991, OP-NORD-6, OP-ACE-6, OP-ACE-5-ULTRA, OP-ACE-5-PRO)'
+        type: boolean
+        default: false
+      
+      enable_ds:
+        description: 'Enable Droidspace. Support for portable containers running full Linux environments.'
+        type: boolean
+        default: false
+
+      enable_ntsync:
+        description: 'Enable NTSync. High-performance, low-latency synchronization primitives compatible with the Windows NT kernel API. Useful for multithreading on Wine/Proton compatiblity layers (gaming emulators like Winlator).'
+        type: boolean
+        default: false
+
+      enable_bbg:
+        description: 'Enables Baseband Guard (BBG). Prevents writing to critical device partitions for protection.'
+        type: boolean
+        default: false
+
+      enable_bbr:
+        description: 'Enables TCP congestion algorithm good for improving throughput and preventing connection lag on high-latency or lossy mobile networks (like crowded 5G or weak Wi-Fi). But increases CPU overhead.' 
+        type: boolean
+        default: true
+
+      enable_ttl:
+        description: 'Enables TTL. Network packet manipulation. Bypass carrier mobile hotspot/tethering data caps.'
+        type: boolean
+        default: true
+
+      enable_ipset:
+        description: 'Enables IPSet. Advanced firewall capabilities.'
+        type: boolean
+        default: true
+
+      enable_unicode:
+        description: 'Enable Unicode Bypass Fix. Prevent path traversal and other detections using non-printable Unicode codepoints.'
+        type: boolean
+        default: true
+
+      enable_susfs:
+        description: "Enables SuSFS implementation. If no, ignore branch selections below."
+        required: true
+        type: boolean
+        default: true
+
       android12-5_10_susfs_branch_or_commit:
         description: 'Enter SusFS Branch or commit hash for android12-5.10'
         required: false
@@ -1059,6 +1105,16 @@ jobs:
           debug: ${{ inputs.debug }}
           enable_adios: ${{ inputs.enable_adios }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          enable_hmbird: ${{ inputs.enable_hmbird }}
+          enable_ds: ${{ inputs.enable_ds }}
+          enable_ntsync: ${{ inputs.enable_ntsync }}
+          enable_bbg: ${{ inputs.enable_bbg }}
+          enable_bbr: ${{ inputs.enable_bbr }}
+          enable_ttl: ${{ inputs.enable_ttl }}
+          enable_ipset: ${{ inputs.enable_ipset }}
+          enable_unicode: ${{ inputs.enable_unicode }}
+          enable_susfs: ${{ inputs.enable_susfs }}
 
       - name: 📊 Build statistics
         id: build-stat
