@@ -88,6 +88,11 @@ on:
       enable_bbr:
         description: 'Enables BBR. TCP congestion algorithm for improving throughput and preventing connection lag on high-latency or lossy networks (like crowded 5G or weak Wi-Fi). But increases CPU overhead.' 
         type: boolean
+        default: false
+
+      enable_bbr3:
+        description: 'Enables BBR v3. TCP congestion algorithm for improving throughput and preventing connection lag on high-latency or lossy networks (like crowded 5G or weak Wi-Fi). But increases CPU overhead.' 
+        type: boolean
         default: true
 
       enable_ttl:
@@ -252,6 +257,7 @@ jobs:
             --arg ntsync "${{ github.event.inputs.enable_ntsync }}" \
             --arg bbg "${{ github.event.inputs.enable_bbg }}" \
             --arg bbr "${{ github.event.inputs.enable_bbr }}" \
+            --arg bbr3 "${{ github.event.inputs.enable_bbr3 }}" \
             --arg ttl "${{ github.event.inputs.enable_ttl }}" \
             --arg ip_set "${{ github.event.inputs.enable_ipset }}" \
             --arg unicode "${{ github.event.inputs.enable_unicode }}" \
@@ -262,6 +268,7 @@ jobs:
               ntsync: ($ntsync == "true"),
               bbg: ($bbg == "true"),
               bbr: ($bbr == "true"),
+              bbr3: ($bbr3 == "true"),
               ttl: ($ttl == "true"),
               ip_set: ($ip_set == "true"),
               unicode: ($unicode == "true"),
