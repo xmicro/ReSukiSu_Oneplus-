@@ -471,13 +471,14 @@ jobs:
                 break
               fi
             done
-            
-            #handle the case where susfs is toggled off, so version will be unknown
-            if [ "${#active_keys[@]}" -eq 0 ] || [ "${active_keys[0]:-}" = "" ]; then
+            if [ "$susfs_base_version" = "unknown" ]; then
+              #handle the case where susfs is toggled off, so version will be unknown
+              if [ "${#active_keys[@]}" -eq 0 ] || [ "${active_keys[0]:-}" = "" ]; then
                 susfs_base_version="none"
               else
                 echo "::error::Could not extract SUSFS_VERSION from susfs.h for any active GKI key."
                 exit 1
+              fi
             fi
             
             # make_release=true: mismatch is a hard error — prevents wrong tag
